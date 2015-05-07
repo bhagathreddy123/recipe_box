@@ -1,0 +1,23 @@
+
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: root
+  password: root
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *default
+  database: recipe_box_development
+
+test:
+  <<: *default
+  database: recipe_box_test
+
+
+production:
+  <<: *default
+  database: recipe_box_production
+  username: recipe_box
+  password: <%= ENV['RECIPE_BOX_DATABASE_PASSWORD'] %>
