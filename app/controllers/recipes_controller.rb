@@ -15,6 +15,7 @@ class RecipesController < ApplicationController
 
 	def create
 		@recipe = Recipe.new(recipe_params)
+		@recipe.user = current_user
 		if @recipe.save
 			redirect_to @recipe, notice: "successfully created new recipe"
 		else
@@ -36,6 +37,7 @@ class RecipesController < ApplicationController
 
 	def destroy
 		if @recipe.destroy
+			
 			redirect_to recipes_path, notice: "recipe deleted sucessfully"
 		end
 	end
@@ -47,8 +49,8 @@ class RecipesController < ApplicationController
 	end
 
 	def recipe_params
-		#params.require(:recipe).permit!
-		params.require(:recipe).permit(:title, :description, :image, ingredients_attributes: [:id, :name, :_destroy], directions_attributes: [:id, :step, :_destroy])
+		params.require(:recipe).permit!
+		#params.require(:recipe).permit(:title, :description, :image, ingredients_attributes: [:id, :name, :_destroy], directions_attributes: [:id, :step, :_destroy])
 	end
 
 end

@@ -1,8 +1,9 @@
+
 .row
-- @recipes.limit(3).each do |recipe|
-	.col-md-4
-		.recipe
-			.image_wrapper
-				= link_to recipe do
-					= image_tag recipe.image.url(:medium)
-				%h2= link_to recipe.title, recipe_path(recipe)
+	- @recipes.each do |recipe|
+		.col-md-4
+			.recipe
+				.image_wrapper
+					= link_to recipe do
+						= image_tag recipe.image.url(:medium)
+				%h2= link_to recipe.title, recipe
